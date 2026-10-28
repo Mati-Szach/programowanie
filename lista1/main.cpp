@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-
+// pierweszy program
 int main()
 {   int NumerZadania = 0;
     bool koniec = false;

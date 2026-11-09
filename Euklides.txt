@@ -1,0 +1,79 @@
+///////////////////////zwykły
+#include <stdio.h>
+
+int main(){
+    
+    int a;
+    int b;
+    int m;
+    int w;
+    int tmp;
+    
+    printf("Wprowadz pierwszą wartość: ");
+    scanf("%d", &a);
+    printf("Wprowadz drugą wartość: ");
+    scanf("%d", &b);
+    
+    if(a == b){
+        printf("%d", a);
+        return 0;
+    }
+    else if(a > b){
+        w = a;
+        m = b;
+    }
+    else{
+        w = b;
+        m = a;
+    }
+    while(w != m){
+        w = w - m;
+        if(m > w){
+            tmp = w;
+            w = m;
+            m = tmp;
+        }
+    }
+    
+    printf("NWD = %d", m);
+    return 0;
+}
+\\\\\\\\\\\\\\\\\\\\\\rozszerzony
+#include <stdio.h>
+#include <stdlib.h>
+
+int NWD(int a, int b, int *x, int *y){
+    if(b == 0){
+        *x = 1;
+        *y = 0;
+        return a;
+    }
+
+    int x1;
+    int y1;
+    int nwd = NWD(b, a % b, &x1, &y1);
+
+    *x = y1;
+    *y = x1 - (a / b) * y1;
+
+    return nwd;
+}
+
+int main(){
+    int a;
+    int b;
+    printf("Podaj 1 wartosc: ");
+    scanf("%d", &a);
+    printf("Podaj 2 wartosc: ");
+    scanf("%d", &b);
+
+    int x;
+    int y;
+
+    int nwd = NWD(a, b, &x, &y);
+
+    printf("NWD(%d, %d) = %d\n", a, b, nwd);
+    printf("%d = %d * (%d) + %d * (%d)\n", nwd, a, x, b, y);
+
+    return 0;
+}
